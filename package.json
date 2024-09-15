@@ -4,6 +4,7 @@
   "author": "Riyane <Purpose-Dev>",
   "description": "Package for easy use of protobuf in FiveM environments",
   "license": "MIT",
+  "private": false,
   "packageManager": "pnpm@9.10.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
