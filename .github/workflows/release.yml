@@ -113,12 +113,31 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+  publish:
+    needs: check-version
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    if: ${{ needs.check-version.outputs.should_release == 'true' }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js with npm registry
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          registry-url: https://registry.npmjs.org/
+
+      - name: Install dependencies
+        run: npm install
+
       - name: Prepare and Publish package
         run: |
-          pnpm run prepare
-          pnpm publish --no-git-checks
+          npm run prepare
+          npm publish
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.npm_token }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Post-build message
         run: echo "-- build completed successfully"
