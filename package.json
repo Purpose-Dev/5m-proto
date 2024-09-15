@@ -16,7 +16,8 @@
     "serialization",
     "typescript",
     "javascript",
-    "fivem"
+    "fivem",
+    "net"
   ],
   "repository": {
     "type": "git",
