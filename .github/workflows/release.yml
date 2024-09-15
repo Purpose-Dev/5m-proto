@@ -116,7 +116,7 @@ jobs:
       - name: Prepare and Publish package
         run: |
           pnpm run prepare
-          pnpm publish
+          pnpm publish --no-git-checks
         env:
           NODE_AUTH_TOKEN: ${{ secrets.npm_token }}
 
