@@ -1,0 +1,13 @@
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "daily"
+      time: "03:00"
+      timezone: "Europe/Paris"
+    labels:
+      - "dependencies"
+    commit-message:
+      prefix: "Chore"
+    open-pull-requests-limit: 5
