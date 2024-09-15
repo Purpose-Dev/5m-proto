@@ -22,26 +22,32 @@ jobs:
 
       - name: Get current version
         id: get_current_version
-        run: echo "CURRENT_VERSION=$(jq -r '.version' package.json)" >> $GITHUB_ENV
+        run: |
+          CURRENT_VERSION=$(jq -r '.version' package.json)
+          echo "CURRENT_VERSION=$CURRENT_VERSION" >> $GITHUB_ENV
+          echo "CURRENT_VERSION=$CURRENT_VERSION" >> $GITHUB_OUTPUT
 
       - name: Fetch tags
         run: git fetch --tags
 
       - name: Get latest tag
         id: get_latest_tag
-        run: echo "LATEST_TAG=$(git describe --tags --abbrev=0 || echo 'v0.0.0')" >> $GITHUB_ENV
+        run: |
+          LATEST_TAG=$(git describe --tags --abbrev=0 || echo 'v0.0.0')
+          echo "LATEST_TAG=$LATEST_TAG" >> $GITHUB_ENV
+          echo "LATEST_TAG=$LATEST_TAG" >> $GITHUB_OUTPUT
 
       - name: Compare versions
         id: version_check
         run: |
           if [ "${{ env.CURRENT_VERSION }}" != "${{ env.LATEST_TAG }}" ]; then
-            echo "## Version changed"
-            echo "should_release=true" >> $GITHUB_ENV
-            echo "package_version=${{ env.CURRENT_VERSION }}" >> $GITHUB_ENV
+            echo "Version changed"
+            echo "should_release=true" >> $GITHUB_OUTPUT
+            echo "package_version=${{ env.CURRENT_VERSION }}" >> $GITHUB_OUTPUT
           else
-            echo "## No version change"
-            echo "should_release=false" >> $GITHUB_ENV
-            echo "package_version=${{ env.CURRENT_VERSION }}" >> $GITHUB_ENV
+            echo "No version change"
+            echo "should_release=false" >> $GITHUB_OUTPUT
+            echo "package_version=${{ env.CURRENT_VERSION }}" >> $GITHUB_OUTPUT
           fi
 
   create-release-and-push:
