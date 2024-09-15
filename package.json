@@ -1,0 +1,49 @@
+{
+  "name": "5m-proto",
+  "version": "0.5.0",
+  "author": "Riyane <Purpose-Dev>",
+  "description": "Package for easy use of protobuf in FiveM environments",
+  "license": "MIT",
+  "packageManager": "pnpm@9.10.0",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist/*"
+  ],
+  "keywords": [
+    "protobuf",
+    "protocol-buffers",
+    "serialization",
+    "typescript",
+    "javascript",
+    "fivem"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Purpose-Dev/5m-proto.git"
+  },
+  "homepage": "https://github.com/Purpose-Dev/5m-proto",
+  "bugs": {
+    "url": "https://github.com/Purpose-Dev/5m-proto/issues",
+    "email": "riyane.dev@gmail.com"
+  },
+  "funding": {
+    "url": "https://ko-fi.com/purpose",
+    "type": "ko_fi"
+  },
+  "scripts": {
+    "build": "tsc",
+    "format": "prettier --write \"src/**/*.{ts,js}\"",
+    "prepare": "pnpm run build",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "version": "pnpm run format && git add -A src"
+  },
+  "devDependencies": {
+    "@types/node": "^22.5.5",
+    "prettier": "^3.3.3",
+    "typescript": "^5.6.2"
+  },
+  "dependencies": {
+    "protobufjs": "^7.4.0"
+  }
+}
